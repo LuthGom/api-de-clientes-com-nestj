@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { ClientesService } from './clientes.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
@@ -24,14 +25,10 @@ export class ClientesController {
   findAll() {
     return this.clientesService.findAll();
   }
-  @Get(':email')
-  findOneByEmail(@Param('email') email: string) {
-    return this.clientesService.findOneByEmail(email);
-  }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientesService.findOne(id);
+  findById(@Param('id') id: string) {
+    return this.clientesService.findById(id);
   }
 
   @Patch(':id')
