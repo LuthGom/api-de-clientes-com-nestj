@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, Param } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { Cliente } from 'src/interfaces/cliente.interface';
 import { ClienteSchema } from 'src/schemas/clientes.schema';
@@ -27,6 +27,9 @@ export class ClientesService {
       .where('username')
       .equals(username);
     return cliente;
+  }
+  async findById(id: string) {
+    return await this.clienteModel.findById({ _id: id });
   }
 
   update(id: string, updateClienteDto: UpdateClienteDto) {
