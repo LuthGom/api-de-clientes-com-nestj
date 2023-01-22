@@ -1,3 +1,5 @@
+import { HydratedDocument, QueryWithHelpers } from 'mongoose';
+
 export interface Cliente {
   name: string;
   username: number;
@@ -5,6 +7,7 @@ export interface Cliente {
   cpf: string;
   endereco: Endereco;
   password: string;
+  createdAt: Date;
 }
 
 export interface Endereco {
