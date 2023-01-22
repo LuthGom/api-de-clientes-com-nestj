@@ -21,7 +21,10 @@ export class ClientesService {
   }
 
   findOne(id: string) {
-    return this.clienteModel.findById(id);
+    return this.clienteModel.findById(id).exec();
+  }
+  findOneByEmail(email: string) {
+    return this.clienteModel.findOne({ email: email });
   }
 
   update(id: string, updateClienteDto: UpdateClienteDto) {
