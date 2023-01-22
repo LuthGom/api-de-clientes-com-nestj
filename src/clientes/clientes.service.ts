@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { Cliente } from 'src/interfaces/cliente.interface';
+import { ClienteSchema } from 'src/schemas/clientes.schema';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 
@@ -17,14 +18,15 @@ export class ClientesService {
   }
 
   async findAll(): Promise<Cliente[]> {
-    return await this.clienteModel.find().exec();
+    return await this.clienteModel.find();
   }
 
-  findOne(id: string) {
-    return this.clienteModel.findById(id).exec();
-  }
-  findOneByEmail(email: string) {
-    return this.clienteModel.findOne({ email: email });
+  async findOne(username: string) {
+    const cliente = await this.clienteModel
+      .find()
+      .where('username')
+      .equals(username);
+    return cliente;
   }
 
   update(id: string, updateClienteDto: UpdateClienteDto) {
