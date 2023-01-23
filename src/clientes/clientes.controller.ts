@@ -28,12 +28,6 @@ export class ClientesController {
     return this.clientesService.findAll();
   }
   @UseGuards(LocalAuthGuard)
-  @Post('teste')
-  async findOne(@Body('username') username: string) {
-    const user = await this.clientesService.findOne(username);
-
-    return user;
-  }
 
   @UseGuards(LocalAuthGuard)
   @Post('/auth/login')
