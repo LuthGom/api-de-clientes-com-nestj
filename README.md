@@ -1,4 +1,4 @@
-- Uma API do tipo Rest CRUD completo para clientes e com autenticação de login por tokens (em construção).
+- Uma API do tipo Rest CRUD completo para clientes e com autenticação de login por tokens.
 
 - As Tecnologias pensadas para a construção do mesmo são:
 ## TypeScript
