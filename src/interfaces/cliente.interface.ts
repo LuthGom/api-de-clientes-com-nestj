@@ -1,11 +1,11 @@
 import { HydratedDocument, QueryWithHelpers } from 'mongoose';
 
-export interface Cliente {
-  name: string;
-  username: number;
-  email: string;
-  cpf: string;
-  endereco: Endereco;
+export interface Cliente extends Document{
+  name: {type: string, required: boolean};
+  username: {type: string, required: boolean};
+  email: {type: string, required: boolean};
+  cpf: {type: string, required: boolean};
+  endereco: {type: object, required: boolean};
   password: string;
   createdAt: Date;
 }
