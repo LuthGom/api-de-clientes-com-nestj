@@ -19,5 +19,14 @@
 | **GET**    | `/clientes`        | Lista todos os clientess      |
 | **GET**    | `/clientes/{id}` | Busca o clientes pelo {id}    |
 | **POST**   | `/clientes`        | Adiciona um novo clientes     |
+| **POST** | `/clientes/:{id}`  | Login    |
 | **PATCH**  | `/clientes/:{id}`  | Atualiza o clientes pelo {id} |
 | **DELETE** | `/clientes/:{id}`  | Deleta o clientes pelo {id}   |
+
+
+# EXEMPLO DE REQUISIÇÃO:
+```json
+  username: string,
+  password: string
+
+```
