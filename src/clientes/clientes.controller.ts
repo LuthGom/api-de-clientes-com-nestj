@@ -6,8 +6,10 @@ import {
   Patch,
   Param,
   Delete,
-  Req,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
+import { LocalAuthGuard } from 'src/auth/local-auth';
 import { ClientesService } from './clientes.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
@@ -24,6 +26,19 @@ export class ClientesController {
   @Get()
   findAll() {
     return this.clientesService.findAll();
+  }
+  @UseGuards(LocalAuthGuard)
+  @Post('teste')
+  async findOne(@Body('username') username: string) {
+    const user = await this.clientesService.findOne(username);
+
+    return user;
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('/auth/login')
+  async login(@Request() req) {
+    return req.user._doc;
   }
 
   @Get(':id')
