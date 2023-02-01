@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { Cliente } from 'src/interfaces/cliente.interface';
-
+import { hash } from 'bcrypt';
 mongoose.Promise;
 const ClienteSchema = new mongoose.Schema<Cliente>({
   name: { type: String, required: true },
@@ -11,8 +11,8 @@ const ClienteSchema = new mongoose.Schema<Cliente>({
   password: { type: String, required: true },
   createdAt: Date,
 });
-ClienteSchema.pre<Cliente>('save', function (next) {
-
+ClienteSchema.pre<Cliente>('save', async function (next) {
+  this.password = await hash(this.password, 10);
   next();
 });
 
