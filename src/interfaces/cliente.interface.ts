@@ -1,4 +1,3 @@
-import { HydratedDocument, QueryWithHelpers } from 'mongoose';
 
 export interface Cliente extends Document{
   name: {type: string, required: boolean};
