@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { compare } from 'bcrypt';
 import { ClientesService } from 'src/clientes/clientes.service';
 @Injectable()
 export class AuthService {
@@ -9,7 +10,7 @@ export class AuthService {
 
     const senha = user[0].password;
 
-    if (user && senha === pass) {
+    if (user && compare(pass, senha)) {
       const { password, ...result } = user[0];
       return result;
     }
