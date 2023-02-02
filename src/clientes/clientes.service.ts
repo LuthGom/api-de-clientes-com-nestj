@@ -1,6 +1,7 @@
 import { Injectable, Inject, Param } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { Cliente } from 'src/interfaces/cliente.interface';
+import { ClienteResponseDto } from './dto/cliente-response.dto';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 
@@ -8,15 +9,18 @@ import { UpdateClienteDto } from './dto/update-cliente.dto';
 export class ClientesService {
   constructor(
     @Inject('CLIENTE_MODEL')
-    private clienteModel: Model<Cliente>,
+    private clienteModel: Model<ClienteResponseDto>,
   ) {}
 
-  async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
+  async create(
+    createClienteDto: CreateClienteDto,
+  ): Promise<ClienteResponseDto> {
     const cliente = new this.clienteModel(createClienteDto);
-    return cliente.save();
+    cliente.save();
+    return new ClienteResponseDto(createClienteDto);
   }
 
-  async findAll(): Promise<Cliente[]> {
+  async findAll(): Promise<ClienteResponseDto[]> {
     return await this.clienteModel.find();
   }
 
